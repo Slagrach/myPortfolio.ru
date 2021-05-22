@@ -250,18 +250,26 @@ $('.doc-slider').slick({
 });
 
 //E-mail Ajax Send
-$("#form").submit(function() { //Change
+$("#form").submit(function () { //Change
 	const th = $(this);
 	$.ajax({
 		type: "POST",
 		url: "/send.php", //Change
 		data: th.serialize()
-	}).done(function() {
+	}).done(function () {
 		alert("Thank you!");
-		setTimeout(function() {
+		setTimeout(function () {
 			// Done Functions
 			th.trigger("reset");
 		}, 1000);
 	});
 	return false;
+});
+
+
+[].forEach.call(document.querySelectorAll('img[data-src]'), function (img) {
+	img.setAttribute('src', img.getAttribute('data-src'));
+	img.onload = function () {
+		img.removeAttribute('data-src');
+	};
 });
